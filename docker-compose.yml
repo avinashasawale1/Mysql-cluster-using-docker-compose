@@ -1,0 +1,31 @@
+version: '3.9'
+services: #Under Services we can define containers, environment variables and ports.
+ mysql1: #1st mysql container
+  image: "mysql:latest" #Use mysql image for creating containers.First searching on local machine if not found downloads or pull image from docker hub.
+  environment:
+          MYSQL_ROOT_PASSWORD: "123"
+          MYSQL_DATABASE: "mysqldb1"
+          MYSQL_USER: "mysql1"
+          MYSQL_PASSWORD: "11"
+  volumes: #mounts the project dir (current dir) on host to /code inside the container,allowing you to modify the code on the fly, without having #to rebuild the image.
+         - .:/mysqlvolume
+
+ mysql2: #2nd mysql container
+  image: "mysql:latest" #Use mysql image for creating containers.First searching on local machine if not found download or pull image from ddocker hub.
+  environment:
+          MYSQL_ROOT_PASSWORD: "123"
+          MYSQL_DATABASE: "mysqldb2"
+          MYSQL_USER: "mysql2"
+          MYSQL_PASSWORD: "12"
+  volumes:
+         - .:/mysqlvolume
+
+ mysql3: #3rd mysql container
+  image: "mysql:latest" #Use mysql image for creating containers.First searching on local machine if not found downloads or pull image from docker hub.
+  environment:
+          MYSQL_ROOT_PASSWORD: "123"
+          MYSQL_DATABASE: "mysqldb3"
+          MYSQL_USER: "mysql3"
+          MYSQL_PASSWORD: "13"
+  volumes:
+         - .:/mysqlvolume

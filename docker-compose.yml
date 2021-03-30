@@ -1,31 +1,40 @@
-version: '3.9'
+version: '3.9' #Docker-compose version latest is 3.9
 services: #Under Services we can define containers, environment variables and ports.
- mysql1: #1st mysql container
+ mysql1: #create 1st mysql container
   image: "mysql:latest" #Use mysql image for creating containers.First searching on local machine if not found downloads or pull image from docker hub.
+  container_name: mysqlc1 #set container name as mysqlc1
   environment:
           MYSQL_ROOT_PASSWORD: "123"
           MYSQL_DATABASE: "mysqldb1"
           MYSQL_USER: "mysql1"
           MYSQL_PASSWORD: "11"
-  volumes: #mounts the project dir (current dir) on host to /code inside the container,allowing you to modify the code on the fly, without having #to rebuild the image.
+  ports: #Specify the host IP address to bind to AND both ports(Host port & Container port)
+        - "127.0.0.1:3301:3306"
+  volumes: #mounts the project dir (current dir) on host to /mysqlvolume inside the container,allowing you to modify the code on the fly, without having #to rebuild the image.
          - .:/mysqlvolume
 
- mysql2: #2nd mysql container
+ mysql2: #create 2nd mysql container
   image: "mysql:latest" #Use mysql image for creating containers.First searching on local machine if not found download or pull image from ddocker hub.
+  container_name: mysqlc2 #set container name as mysqlc1
   environment:
           MYSQL_ROOT_PASSWORD: "123"
           MYSQL_DATABASE: "mysqldb2"
           MYSQL_USER: "mysql2"
           MYSQL_PASSWORD: "12"
+  ports: #Specify the host IP address to bind to AND both ports(Host port & Container port)
+        - "127.0.0.1:3302:3306"
   volumes:
          - .:/mysqlvolume
 
- mysql3: #3rd mysql container
+ mysql3: #create 3rd mysql container
   image: "mysql:latest" #Use mysql image for creating containers.First searching on local machine if not found downloads or pull image from docker hub.
+  container_name: mysqlc3 #set container name as mysqlc1
   environment:
           MYSQL_ROOT_PASSWORD: "123"
           MYSQL_DATABASE: "mysqldb3"
           MYSQL_USER: "mysql3"
           MYSQL_PASSWORD: "13"
+  ports: #Specify the host IP address to bind to AND both ports(Host port & Container port)
+        - "127.0.0.1:3303:3306"
   volumes:
          - .:/mysqlvolume
